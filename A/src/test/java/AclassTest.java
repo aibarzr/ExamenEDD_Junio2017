@@ -46,6 +46,7 @@ public class AclassTest {
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 		}
+		//No hay test con nulos porque el código a testear no permite pasarle los parametros nulos, por eso los paso como 0.
 	}
 	
 	
@@ -114,6 +115,19 @@ public class AclassTest {
 		Mockito.when(button.getParent()).thenReturn(container);
 		Mockito.when(container.isEnabled()).thenReturn(false);
 		Mockito.when(container.contains(point)).thenReturn(false);
+		try {
+			obj.mockito1(faultAction, button, point);
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+	}
+	@Test
+	public void mockito1Test_3() {
+		Mockito.when(button.getParent()).thenReturn(container);
+		Mockito.when(container.isEnabled()).thenReturn(false);
+		Mockito.when(container.contains(point)).thenReturn(false);
+		Mockito.when(faultAction.value()).thenReturn("salesuanos.edu"); //Paso "salesuanos.edu" en vez de "salesianos.edu"
+																		//para testear el segundo IF
 		try {
 			obj.mockito1(faultAction, button, point);
 		} catch (RuntimeException e) {
