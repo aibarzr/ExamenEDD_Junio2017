@@ -1,9 +1,17 @@
+import java.awt.Button;
+import java.awt.Container;
 import java.awt.Point;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 
+import javax.xml.ws.FaultAction;
+
+@RunWith(MockitoJUnitRunner.class)
 public class AclassTest {
 	Aclass obj = new Aclass();
 	
@@ -12,6 +20,9 @@ public class AclassTest {
 	
 	@Mock
 	Button button;
+	
+	@Mock
+	Container container;
 	
 	@Mock
 	Point point;
@@ -71,6 +82,16 @@ public class AclassTest {
 	
 	@Test
 	public void mockito1Test() {
-		
+		Mockito.when(button.getParent()).thenReturn(container);
+		Mockito.when(container.isEnabled()).thenReturn(true);
+		Mockito.when(container.contains(point)).thenReturn(true);
+		Mockito.when(faultAction.value()).thenReturn("salesianos.edu");
+		try {
+			obj.mockito1(faultAction, button, point);
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
 	}
+	
+	
 }
