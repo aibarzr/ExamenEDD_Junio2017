@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import javax.swing.JFrame;
 import javax.xml.ws.FaultAction;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -26,6 +27,12 @@ public class AclassTest {
 	
 	@Mock
 	Point point;
+	
+	@Mock
+	JFrame frame;
+	
+	@Mock
+	Button close;
 	
 	@Test
 	public void locateTest() {
@@ -80,8 +87,9 @@ public class AclassTest {
 		}
 	}
 	
+	//Testing mockito1
 	@Test
-	public void mockito1Test() {
+	public void mockito1Test_1() {
 		Mockito.when(button.getParent()).thenReturn(container);
 		Mockito.when(container.isEnabled()).thenReturn(true);
 		Mockito.when(container.contains(point)).thenReturn(true);
@@ -93,5 +101,52 @@ public class AclassTest {
 		}
 	}
 	
+	@Test
+	public void mockito1Test_2() {
+		Mockito.when(button.getParent()).thenReturn(container);
+		Mockito.when(container.isEnabled()).thenReturn(false);
+		Mockito.when(container.contains(point)).thenReturn(false);
+		try {
+			obj.mockito1(faultAction, button, point);
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+	}
 	
+	//Testing mockito2
+	
+	@Test
+	public void mockito2Test_1() {
+		Mockito.when(close.getActionCommand()).thenReturn("close");
+		Mockito.when(frame.checkImage(null, null)).thenReturn(3);
+		Mockito.when(frame.isDisplayable()).thenReturn(true);
+		try {
+			obj.mockito2(frame, close);
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void mockito2Test_2() {
+		Mockito.when(close.getActionCommand()).thenReturn("open");
+		Mockito.when(frame.checkImage(null, null)).thenReturn(1);
+		try {
+			obj.mockito2(frame, close);
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void mockito2Test_3() {
+		Mockito.when(close.getActionCommand()).thenReturn("close");
+		Mockito.when(frame.checkImage(null, null)).thenReturn(2);
+		Mockito.when(frame.isDisplayable()).thenReturn(false);
+		try {
+			obj.mockito2(frame, close);
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+	}
 }
