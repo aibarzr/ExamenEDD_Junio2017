@@ -34,6 +34,8 @@ public class AclassTest {
 	@Mock
 	Button close;
 	
+	
+	
 	@Test
 	public void locateTest() {
 		Assert.assertEquals(new Point(1, 1), obj.locate(1, 1));
@@ -45,6 +47,8 @@ public class AclassTest {
 			e.printStackTrace();
 		}
 	}
+	
+	
 	
 	@Test
 	//Triangle
@@ -67,6 +71,8 @@ public class AclassTest {
 		}
 	}
 	
+	
+	
 	@Test
 	public void concatTest() {
 		Assert.assertEquals("en un lugar de la mancha", obj.concat(true, "En un lugar", " de la Mancha"));
@@ -86,6 +92,8 @@ public class AclassTest {
 			e.printStackTrace();
 		}
 	}
+	
+	
 	
 	//Testing mockito1
 	@Test
@@ -113,8 +121,9 @@ public class AclassTest {
 		}
 	}
 	
-	//Testing mockito2
 	
+	
+	//Testing mockito2
 	@Test
 	public void mockito2Test_1() {
 		Mockito.when(close.getActionCommand()).thenReturn("close");
